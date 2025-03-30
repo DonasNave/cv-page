@@ -429,6 +429,120 @@ body {
   font-size: 0.9rem;
 }
 
+/* PDF Download Button */
+.pdf-download-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 3rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
+  z-index: 1000;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 2.5rem;
+}
+
+.pdf-download-button span {
+  display: none;
+  transition: all 0.2s ease;
+}
+
+.pdf-download-button:hover {
+  color: var(--color-text-secondary);
+  transform: translate(2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0 var(--color-shadow-light),
+    inset 4px 4px 0 var(--color-shadow-dark);
+  padding-right: 1.25rem;
+  justify-content: flex-start;
+}
+
+.pdf-download-button:hover span {
+  display: inline;
+  max-width: 200px;
+  opacity: 1;
+  margin-left: 0.5rem;
+}
+
+.pdf-download-button i {
+  font-size: 1rem;
+  min-width: 1rem;
+  text-align: center;
+}
+
+/* Print Styles */
+@media print {
+  .social-links,
+  .section-indicator,
+  .pdf-download-button {
+    display: none;
+  }
+
+  .section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .app {
+    background: white;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .card,
+  .bio-text,
+  .highlight-item,
+  .skill-category {
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .title,
+  .subtitle,
+  .section-title,
+  .card-title,
+  .highlight-label {
+    color: black;
+    text-shadow: none;
+  }
+
+  .card-subtitle,
+  .highlight-value,
+  .card-text,
+  .skill-list li {
+    color: black;
+  }
+
+  .skill-list li::before {
+    color: black;
+  }
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   body {
@@ -600,5 +714,25 @@ body {
 
   .highlight-value {
     font-size: 0.8rem;
+  }
+
+  .pdf-download-button {
+    bottom: 1rem;
+    right: 3rem;
+    padding: 0.5rem;
+    min-width: 2rem;
+  }
+
+  .pdf-download-button:hover {
+    padding-right: 0.5rem;
+    justify-content: center;
+  }
+
+  .pdf-download-button:hover span {
+    display: none;
+  }
+
+  .pdf-download-button i {
+    font-size: 0.9rem;
   }
 }

@@ -87,6 +87,12 @@ const App: FC = () => {
         </a>
       </div>
 
+      {/* PDF Download Button */}
+      <button className="pdf-download-button" onClick={() => window.print()}>
+        <i className="fas fa-file-pdf"></i>
+        <span>Download PDF</span>
+      </button>
+
       {/* Section Indicators */}
       <div className="section-indicator">
         {[0, 1, 2, 3, 4, 5].map((index) => (
