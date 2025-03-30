@@ -188,13 +188,6 @@ body {
   width: 2rem;
 }
 
-.indicator-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-}
-
 .indicator-dot {
   width: 12px;
   height: 12px;
@@ -208,29 +201,6 @@ body {
   background: var(--color-text-secondary);
   box-shadow: 0 0 10px var(--color-text-secondary);
 }
-
-.indicator-label {
-  position: fixed;
-  right: 4rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: right center;
-  color: var(--color-text-primary);
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.indicator-group.active .indicator-label {
-  opacity: 1;
-}
-
-/* Remove the hover effect completely */
-/* .indicator-group:hover .indicator-label {
-  opacity: 0;
-} */
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -359,9 +329,5 @@ body {
     width: 100%;
     max-width: 200px;
     justify-content: center;
-  }
-
-  .indicator-label {
-    right: 3rem;
   }
 }

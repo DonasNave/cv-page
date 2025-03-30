@@ -3,6 +3,25 @@ import { FC, useEffect, useState } from 'react'
 const App: FC = () => {
   const [activeSection, setActiveSection] = useState(0)
 
+  // Function to calculate and format duration
+  const calculateDuration = (startDate: Date, endDate: Date | null = null) => {
+    const now = endDate || new Date()
+    const diff = now.getTime() - startDate.getTime()
+    
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365))
+    const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30))
+    
+    let duration = ''
+    if (years > 0) {
+      duration += `${years} year${years !== 1 ? 's' : ''} `
+    }
+    if (months > 0) {
+      duration += `${months} month${months !== 1 ? 's' : ''}`
+    }
+    
+    return duration.trim()
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('section')
@@ -61,26 +80,19 @@ const App: FC = () => {
 
       {/* Section Indicators */}
       <div className="section-indicator">
-        {[
-          { index: 0, name: 'Intro' },
-          { index: 1, name: 'Experience' },
-          { index: 2, name: 'Education' },
-          { index: 3, name: 'Projects' }
-        ].map(({ index, name }) => (
-          <div key={index} className={`indicator-group ${activeSection === index ? 'active' : ''}`}>
-            <div
-              className={`indicator-dot ${activeSection === index ? 'active' : ''}`}
-              onClick={() => handleIndicatorClick(index)}
-            />
-            <span className="indicator-label">{name}</span>
-          </div>
+        {[0, 1, 2, 3].map((index) => (
+          <div
+            key={index}
+            className={`indicator-dot ${activeSection === index ? 'active' : ''}`}
+            onClick={() => handleIndicatorClick(index)}
+          />
         ))}
       </div>
 
       {/* Header/Introduction Section */}
       <section className="section section-intro">
         <div className="content-wrapper">
-          <h1 className="title">Noe Svanda</h1>
+          <h1 className="title">Noe Švanda</h1>
           <h2 className="subtitle">Software Engineer</h2>
           <p className="description">
             Uherské Hradiště, Zlín Region, Czech Republic
@@ -96,16 +108,14 @@ const App: FC = () => {
             <div className="card">
               <h3 className="card-title">ŠKODA Digital</h3>
               <p className="card-subtitle">Software Engineer</p>
-              <p className="card-text">August 2023 - Present (1 year 8 months)</p>
+              <p className="card-text">August 2023 - Present ({calculateDuration(new Date('2023-08-01'))})</p>
               <p className="card-text">Ostrava, Moravia-Silesia, Czech Republic</p>
             </div>
 
             <div className="card">
               <h3 className="card-title">TESCO SW a.s.</h3>
               <p className="card-subtitle">Software Engineer</p>
-              <p className="card-text">May 2023 - August 2023 (4 months)</p>
-              <p className="card-text">Software Engineer</p>
-              <p className="card-text">October 2021 - April 2023 (1 year 7 months)</p>
+              <p className="card-text">October 2021 - July 2023 (1 year 10 months)</p>
               <p className="card-text">Olomouc, Olomouc Region, Czech Republic</p>
             </div>
 
@@ -152,10 +162,11 @@ const App: FC = () => {
           <div className="projects-grid">
             <div className="card">
               <h3 className="card-title">Personal Website</h3>
-              <p className="card-subtitle">React + TypeScript + Tailwind CSS</p>
+              <p className="card-subtitle">React + TypeScript + CSS</p>
               <p className="card-text">
                 A modern, responsive personal website with retro gaming aesthetics.
                 Features smooth scrolling, section indicators, and pixel-perfect design.
+                Built with React and TypeScript, styled with pure CSS for optimal performance.
               </p>
             </div>
           </div>
