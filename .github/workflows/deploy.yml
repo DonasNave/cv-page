@@ -1,8 +1,13 @@
-name: Deploy to GitHub Pages
+name: Deploy CV to GitHub Pages
 
 on:
   push:
     branches: [ main ]  # or master, depending on your default branch
+
+# Add concurrency to prevent duplicate runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
