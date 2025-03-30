@@ -76,7 +76,9 @@ body {
 .section-intro,
 .section-experience,
 .section-projects,
-.section-education {
+.section-education,
+.section-skills,
+.section-bio {
   background-color: var(--color-bg-primary);
 }
 
@@ -154,6 +156,53 @@ body {
   box-shadow: 
     inset -4px -4px 0 var(--color-shadow-light),
     inset 4px 4px 0 var(--color-shadow-dark);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.expand-button {
+  background: none;
+  border: 2px solid var(--color-border);
+  color: var(--color-text-primary);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  font-size: 0.8rem;
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
+}
+
+.expand-button:hover {
+  color: var(--color-text-secondary);
+  transform: translate(2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0 var(--color-shadow-light),
+    inset 4px 4px 0 var(--color-shadow-dark);
+}
+
+.card-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.card-details .card-text {
+  margin-bottom: 0.5rem;
+}
+
+.card-details .card-text:last-child {
+  margin-bottom: 0;
 }
 
 .card-title {
@@ -257,6 +306,129 @@ body {
   background: var(--color-shadow-light);
 }
 
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skill-category {
+  background-color: var(--color-bg-secondary);
+  padding: 1.5rem;
+  border: 2px solid var(--color-border);
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
+  transition: all 0.2s ease;
+}
+
+.skill-category:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0 var(--color-shadow-light),
+    inset 4px 4px 0 var(--color-shadow-dark);
+}
+
+.skill-category-title {
+  font-size: 1.1rem;
+  color: var(--color-text-accent);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 0 #000;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-list li {
+  color: var(--color-text-primary);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.skill-list li::before {
+  content: '>';
+  color: var(--color-text-secondary);
+  position: absolute;
+  left: 0;
+}
+
+/* Bio Section */
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bio-text {
+  background-color: var(--color-bg-secondary);
+  padding: 2rem;
+  border: 2px solid var(--color-border);
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
+}
+
+.bio-text .card-text {
+  margin-bottom: 1rem;
+}
+
+.bio-text .card-text:last-child {
+  margin-bottom: 0;
+}
+
+.bio-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.highlight-item {
+  background-color: var(--color-bg-secondary);
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.highlight-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    inset -4px -4px 0 var(--color-shadow-light),
+    inset 4px 4px 0 var(--color-shadow-dark);
+}
+
+.highlight-label {
+  color: var(--color-text-accent);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.highlight-value {
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   body {
@@ -338,6 +510,21 @@ body {
     padding: 1.25rem;
   }
 
+  .card-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .expand-button {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  .card-details {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
   .card-title {
     font-size: 0.9rem;
   }
@@ -362,5 +549,56 @@ body {
   .description {
     font-size: 0.7rem;
     line-height: 1.6;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-category {
+    padding: 1rem;
+  }
+
+  .skill-category-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .skill-list li {
+    font-size: 0.7rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .bio-content {
+    gap: 1rem;
+  }
+
+  .bio-text {
+    padding: 1.25rem;
+  }
+
+  .bio-text .card-text {
+    margin-bottom: 0.75rem;
+  }
+
+  .bio-highlights {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .highlight-item {
+    padding: 0.75rem;
+  }
+
+  .highlight-label {
+    font-size: 0.7rem;
+  }
+
+  .highlight-value {
+    font-size: 0.8rem;
   }
 }
