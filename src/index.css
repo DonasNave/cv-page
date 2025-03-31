@@ -3,7 +3,7 @@
 /* Base styles */
 :root {
   --color-bg-primary: #1a1a1a;
-  --color-bg-secondary: #1a1a1a;
+  --color-bg-secondary: #2a2a2a;
   --color-text-primary: #ffffff;
   --color-text-secondary: #00ff00;
   --color-text-accent: #00ffff;
@@ -11,7 +11,6 @@
   --color-border: #3a3a3a;
   --color-shadow-light: #2a2a2a;
   --color-shadow-dark: #4a4a4a;
-  --header-height: 4rem;
 }
 
 * {
@@ -20,16 +19,12 @@
   box-sizing: border-box;
 }
 
-html, body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-}
-
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font-size: 16px;
-  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 body {
@@ -47,27 +42,19 @@ body {
 
 /* Sections */
 .section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
   min-height: 100vh;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: relative;
-  overflow: hidden;
-  background-color: var(--color-bg-primary);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: 3rem; /* Add space for social links */
 }
 
-/* Section Spacer */
-.section-spacer {
-  height: 50vh;
-  scroll-snap-align: none;
-  position: relative;
-  background-color: var(--color-bg-primary);
-}
-
-.section-spacer::before {
+.section::before {
   content: '';
   position: absolute;
   top: 0;
@@ -76,13 +63,12 @@ body {
   bottom: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.05),
-    rgba(0, 0, 0, 0.05) 1px,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
     transparent 1px,
     transparent 2px
   );
   pointer-events: none;
-  opacity: 0.5;
 }
 
 /* Remove section background variations */
@@ -133,12 +119,12 @@ body {
 }
 
 .section-title {
-  font-size: 2.5rem;
-  margin: 2rem 0;
-  text-align: center;
+  font-size: 2rem;
   color: var(--color-text-secondary);
-  text-shadow: 2px 2px 0 var(--color-shadow-dark);
-  position: relative;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 3px 3px 0 #000;
+  letter-spacing: 2px;
 }
 
 /* Cards */
@@ -155,7 +141,7 @@ body {
 }
 
 .card {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   padding: 2rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -241,14 +227,19 @@ body {
 /* Social Links */
 .social-links {
   position: fixed;
-  left: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg-primary);
+  padding: 0.5rem;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   z-index: 100;
-  width: 2rem;
+  border-bottom: 2px solid var(--color-border);
+  box-shadow: 
+    inset -2px -2px 0 var(--color-shadow-light),
+    inset 2px 2px 0 var(--color-shadow-dark);
 }
 
 .social-link {
@@ -261,7 +252,7 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
   border: 2px solid var(--color-border);
-  background: var(--color-bg-primary);
+  background: var(--color-bg-secondary);
 }
 
 .social-link:hover {
@@ -283,8 +274,6 @@ body {
   gap: 1rem;
   z-index: 100;
   width: 2rem;
-  background-color: var(--color-bg-primary);
-  padding: 1rem;
 }
 
 .indicator-dot {
@@ -307,7 +296,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
+  background: var(--color-bg-secondary);
   border: 2px solid var(--color-border);
 }
 
@@ -330,7 +319,7 @@ body {
 }
 
 .skill-category {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   padding: 1.5rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -388,7 +377,7 @@ body {
 }
 
 .bio-text {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   padding: 2rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -411,7 +400,7 @@ body {
 }
 
 .highlight-item {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   padding: 1rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -449,7 +438,7 @@ body {
   position: fixed;
   bottom: 1rem;
   right: 3rem;
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border);
   padding: 0.75rem;
@@ -574,32 +563,20 @@ body {
     padding: 0 0.5rem;
   }
 
-  /* Social Links - Mobile */
+  .section {
+    padding: 1rem;
+    scroll-margin-top: 4rem; /* Increase space for social links on mobile */
+  }
+
   .social-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    flex-direction: row;
-    justify-content: center;
-    width: auto;
     padding: 0.75rem;
-    background-color: var(--color-bg-primary);
-    border-bottom: 2px solid var(--color-border);
   }
 
   .social-link {
-    width: 2.25rem;
-    height: 2.25rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
   }
 
-  .social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Section indicators - Mobile */
   .section-indicator {
     position: fixed;
     bottom: 1rem;
@@ -609,15 +586,12 @@ body {
     flex-direction: row;
     width: auto;
     min-width: fit-content;
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-bg-secondary);
     padding: 0.5rem;
     border: 2px solid var(--color-border);
     border-radius: 4px;
     justify-content: center;
     gap: 0.75rem;
-    box-shadow: 
-      inset -2px -2px 0 var(--color-shadow-light),
-      inset 2px 2px 0 var(--color-shadow-dark);
   }
 
   .indicator-dot {
@@ -634,8 +608,8 @@ body {
   }
 
   .section-title {
-    font-size: 2rem;
-    margin: 1.5rem 0;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .card {
@@ -671,7 +645,7 @@ body {
   }
 
   .section {
-    padding: 1rem 0.5rem 3rem;
+    padding: 1.5rem 0;
   }
 
   .projects-grid {
@@ -752,13 +726,5 @@ body {
 
   .pdf-download-button i {
     font-size: 0.9rem;
-  }
-
-  :root {
-    --header-height: 3.5rem;
-  }
-
-  .section-spacer {
-    height: 25vh; /* Smaller spacer on mobile */
   }
 }
