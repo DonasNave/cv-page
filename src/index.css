@@ -3,7 +3,7 @@
 /* Base styles */
 :root {
   --color-bg-primary: #1a1a1a;
-  --color-bg-secondary: #2a2a2a;
+  --color-bg-secondary: #1a1a1a;
   --color-text-primary: #ffffff;
   --color-text-secondary: #00ff00;
   --color-text-accent: #00ffff;
@@ -11,6 +11,7 @@
   --color-border: #3a3a3a;
   --color-shadow-light: #2a2a2a;
   --color-shadow-dark: #4a4a4a;
+  --header-height: 4rem;
 }
 
 * {
@@ -19,12 +20,16 @@
   box-sizing: border-box;
 }
 
+html, body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
   font-size: 16px;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 body {
@@ -43,19 +48,26 @@ body {
 /* Sections */
 .section {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   min-height: 100vh;
+  padding: 2rem 1rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 4rem 0;
-  scroll-margin-top: 0;
   background-color: var(--color-bg-primary);
 }
 
-.section::before {
+/* Section Spacer */
+.section-spacer {
+  height: 50vh;
+  scroll-snap-align: none;
+  position: relative;
+  background-color: var(--color-bg-primary);
+}
+
+.section-spacer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -64,12 +76,13 @@ body {
   bottom: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.05) 1px,
     transparent 1px,
     transparent 2px
   );
   pointer-events: none;
+  opacity: 0.5;
 }
 
 /* Remove section background variations */
@@ -120,12 +133,12 @@ body {
 }
 
 .section-title {
-  font-size: 2rem;
-  color: var(--color-text-secondary);
+  font-size: 2.5rem;
+  margin: 2rem 0;
   text-align: center;
-  margin-bottom: 3rem;
-  text-shadow: 3px 3px 0 #000;
-  letter-spacing: 2px;
+  color: var(--color-text-primary);
+  text-shadow: 2px 2px 0 var(--color-shadow-dark);
+  position: relative;
 }
 
 /* Cards */
@@ -142,7 +155,7 @@ body {
 }
 
 .card {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   padding: 2rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -248,7 +261,7 @@ body {
   text-decoration: none;
   transition: all 0.3s ease;
   border: 2px solid var(--color-border);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-primary);
 }
 
 .social-link:hover {
@@ -270,6 +283,8 @@ body {
   gap: 1rem;
   z-index: 100;
   width: 2rem;
+  background-color: var(--color-bg-primary);
+  padding: 1rem;
 }
 
 .indicator-dot {
@@ -292,7 +307,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-primary);
   border: 2px solid var(--color-border);
 }
 
@@ -315,7 +330,7 @@ body {
 }
 
 .skill-category {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   padding: 1.5rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -373,7 +388,7 @@ body {
 }
 
 .bio-text {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   padding: 2rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -396,7 +411,7 @@ body {
 }
 
 .highlight-item {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   padding: 1rem;
   border: 2px solid var(--color-border);
   box-shadow: 
@@ -434,7 +449,7 @@ body {
   position: fixed;
   bottom: 1rem;
   right: 3rem;
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border);
   padding: 0.75rem;
@@ -570,7 +585,7 @@ body {
     justify-content: center;
     width: auto;
     padding: 0.75rem;
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-bg-primary);
     border-bottom: 2px solid var(--color-border);
   }
 
@@ -594,12 +609,15 @@ body {
     flex-direction: row;
     width: auto;
     min-width: fit-content;
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-bg-primary);
     padding: 0.5rem;
     border: 2px solid var(--color-border);
     border-radius: 4px;
     justify-content: center;
     gap: 0.75rem;
+    box-shadow: 
+      inset -2px -2px 0 var(--color-shadow-light),
+      inset 2px 2px 0 var(--color-shadow-dark);
   }
 
   .indicator-dot {
@@ -616,8 +634,8 @@ body {
   }
 
   .section-title {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    margin: 1.5rem 0;
   }
 
   .card {
@@ -653,7 +671,7 @@ body {
   }
 
   .section {
-    padding: 1.5rem 0;
+    padding: 1rem 0.5rem 3rem;
   }
 
   .projects-grid {
@@ -734,5 +752,13 @@ body {
 
   .pdf-download-button i {
     font-size: 0.9rem;
+  }
+
+  :root {
+    --header-height: 3.5rem;
+  }
+
+  .section-spacer {
+    height: 25vh; /* Smaller spacer on mobile */
   }
 }

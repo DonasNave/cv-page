@@ -115,6 +115,8 @@ const App: FC = () => {
         </div>
       </section>
 
+      <div className="section-spacer" />
+
       {/* Bio Section */}
       <section className="section section-bio">
         <div className="content-wrapper">
@@ -153,6 +155,8 @@ const App: FC = () => {
           </div>
         </div>
       </section>
+
+      <div className="section-spacer" />
 
       {/* Skills Section */}
       <section className="section section-skills">
@@ -225,6 +229,8 @@ const App: FC = () => {
           </div>
         </div>
       </section>
+
+      <div className="section-spacer" />
 
       {/* Work Experience Section */}
       <section className="section section-experience">
@@ -324,6 +330,8 @@ const App: FC = () => {
         </div>
       </section>
 
+      <div className="section-spacer" />
+
       {/* Education Section */}
       <section className="section section-education">
         <div className="content-wrapper">
@@ -343,6 +351,8 @@ const App: FC = () => {
           </div>
         </div>
       </section>
+
+      <div className="section-spacer" />
 
       {/* Projects Section */}
       <section className="section section-projects">
